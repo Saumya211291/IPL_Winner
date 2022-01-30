@@ -1,0 +1,75 @@
+{% extends 'block.html' %}
+
+{% block subcontent %}
+<div class="card-body text-center">
+	<h4 class="card-title">Predict the Score</h4>
+	<form method="post" class="form-row" action="/predict">
+		<div class="row">
+			<div class="col-lg-6 col-sm-12">
+				<label for="batting_team">Batting Team
+					<select name="batting_team" class="btn btn-light btn-toolbar">
+						{% for team in teams %}
+						<option value="{{team}}">{{team}}</option>
+						{% endfor %}
+					</select>
+				</label>
+			</div>
+			
+			<div class="col-lg-6 col-sm-12">
+				<label for="bowling_team">Bowling Team
+					<select name="bowling_team" class="btn btn-light btn-toolbar">
+						{% for team in teams %}
+						<option value="{{team}}">{{team}}</option>
+						{% endfor %}
+					</select>
+				</label>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<label for="location">Location
+					<select name="location" class="btn btn-light btn-toolbar">
+						{% for city in cities %}
+						<option value="{{city}}">{{city}}</option>
+						{% endfor %}
+					</select>
+				</label>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<label for="runs">Runs Left
+					<input required type="number" class="btn btn-light btn-toolbar" name="runs_left" min="1">
+				</label>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<label for="runs">Balls Left
+					<input required type="number" class="btn btn-light btn-toolbar" name="ball_left" min="1">
+				</label>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<label for="overs">Wickets
+					<input required type="number" step="0.1" class="btn btn-light btn-toolbar" id="overs" name="wickets" max="9.0" min="0.0" accept="float">
+				</label>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<label for="runs_last_5">Total Runs
+					<input required type="number" name="total_runs" class="btn btn-light btn-toolbar" min="1">
+				</label>
+			</div>
+			<div class="col-lg-6 col-sm-12">
+				<label for="wickets_last_5">Current Run Rate
+					<input required type="number" name="crr" min="0" class="btn btn-light btn-toolbar" type="float">
+				</label>
+			</div>
+
+			<div class="col-lg-6 col-sm-12">
+				<label for="wickets_last_5">Required Run Rate
+					<input required type="number" name="rrr" min="0" class="btn btn-light btn-toolbar" type="float">
+				</label>
+			</div>
+
+			<div class="col-12">
+				<input required type="submit" class="btn btn-success" value="Predict Winner">
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock %}
